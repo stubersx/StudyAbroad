@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Study Abroad";
+}
+
+<div class="row bg-dark text-light p-5 mb-5">
+    <div class="col-md-6 mx-auto">
+        <h1 class="mt-lg-5 mb-4">Contact Us</h1>
+        <p>
+            Do you have questions about our service?<br />
+            Please fill out the form below, and we will be in touch soon.<br />
+            Office: Traverse City MI<br />
+            Hours: Monday through Friday, 9AM-5PM EST
+        </p>
+    </div>
+    <img class="col-md-5 img-thumbnail mx-auto mt-3" src="~/images/contact.jpg" alt="contact" style="max-width: 350px;" />
+</div>
+
+<form asp-controller="Home" asp-action="Index" method="post" class="border border-5 border-danger rounded-3 bg-light p-5">
+    <div class="row text-center ms-md-3">
+        <div class="col-md">
+            <label class="col-3 text-start">First Name:</label>
+            <input class="col-8" />
+            <span class="text-danger"></span>
+        </div>
+        <div class="col-md">
+            <label class="col-3 text-start">Last Name:</label>
+            <input class="col-8" />
+            <span class="text-danger"></span>
+        
+        </div>
+    </div>
+    <div class="row text-center ms-md-3">
+        <div class="col-md">
+            <label class="col-3 text-start">Email:</label>
+            <input class="col-8" />
+            <span class="text-danger"></span>
+        </div>
+        <div class="col-md">
+            <label class="col-3 text-start">Phone:</label>
+            <input class="col-8" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row ms-md-3 text-center">
+        <label class="my-3">Message:</label>
+        <input class="col-6 mx-auto" type="text" />
+        <span class="text-danger"></span>
+    </div>
+    <button asp-controller="Home" asp-action="Contact" type="submit" class="mx-auto">Submit</button>
+    <button type="reset" class="mx-auto">Clear</button>
+</form>

@@ -1,0 +1,76 @@
+﻿body {
+}
+
+#top-cover {
+    margin: 0;
+    padding: 0;
+    height: 40rem;
+    background: url("../images/main.jpg") no-repeat;
+    background-size: cover;
+    background-position-x: center;
+}
+
+h2 {
+    text-shadow: 1px 1px black;
+}
+
+/* color scheme 
+
+
+
+
+    <i class="fa-solid fa-graduation-cap"></i>
+    <i class="fa-solid fa-plane"></i>
+    <i class="fa-solid fa-globe"></i>
+    <i class="fa-solid fa-passport"></i>
+    <i class="fa-solid fa-plane-departure"></i>
+    <i class="fa-solid fa-suitcase-rolling"></i>
+
+    イベント
+    カレンダー　カウンセリング
+    ビザ情報
+    年齢
+・学年
+    期間
+    種類
+    国
+    コラム
+    目的
+    どうやって選ぶか
+    なにから始めるのか
+    サービス
+    １０１
+    費用
+    学校検索
+    体験談
+    F&Q
+    パッケージ　宿泊・航空券
+    メンバー限定
+
+    all in one application for study abroad
+    planning to tracking, gathering the information
+
+
+
+
+
+
+
+7. Include at least 2 images in your application (you select the view). Apply bootstrap formatting to the images. Make sure the images are placed into the wwwroot/Images folder (you will need to create the folder).
+
+
+     
+
+10. Make sure all your pages use the grid layout with rows and columns.
+
+11. Make sure your headings and titles have similar formatting on all your pages.
+
+
+
+added 2 images to wwwroot/Images and inserted them into one or more views (2 points)
+
+customized the navbar to include links to About and Contact (2 points)
+included the grid layout in the views and applied consistent styling to the titles (2 points)
+
+
+*/
