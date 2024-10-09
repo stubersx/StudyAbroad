@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StudyAbroad.Data;
+using StudyAbroad.Models;
 
 namespace StudyAbroad
 {
@@ -18,6 +19,10 @@ namespace StudyAbroad
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddDbContext<AbroadContext>(options =>
+                options.UseSqlServer(connectionString));
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

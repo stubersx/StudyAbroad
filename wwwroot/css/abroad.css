@@ -1,6 +1,22 @@
-﻿body {
+﻿/* general styling */
+body {
+    overflow-y: hidden;
 }
 
+.container-fluid {
+    overflow-x: hidden;
+}
+
+/* navbar styling */
+.navbar-nav .nav-item .nav-link {
+    color: black;
+}
+
+.navbar-nav .nav-item .nav-link:hover, .nav-link:active {
+    color: red;
+}
+
+/* index page */
 #top-cover {
     margin: 0;
     padding: 0;
@@ -14,9 +30,25 @@ h2 {
     text-shadow: 1px 1px black;
 }
 
+a:hover {
+    color: red;
+}
+
+
+
+
+
+
+
+
 /* color scheme 
 
+    基本は赤
+    リスト以外のテーブルとかでも目立つか試す。
+    error message, text
 
+        background-color: #F2F0EB;
+        font-family: Papyrus;
 
 
     <i class="fa-solid fa-graduation-cap"></i>
@@ -30,7 +62,7 @@ h2 {
     カレンダー　カウンセリング
     ビザ情報
     年齢
-・学年
+    学年
     期間
     種類
     国

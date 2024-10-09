@@ -1,5 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Study Abroad";
+    Layout = "_LayoutIndex";
 }
 
 <div id="top-cover" class="row text-white">
@@ -59,8 +60,6 @@
 </div>
 
 <div class="row">
-
     <p>Sign up today and get a full access!</p>
-    <button class="nav-link text-dark col-1 align-content-center" asp-area="Identity" asp-page="/Account/Register">Register</button>
-    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    <partial name="_LoginPartial" />
 </div>
