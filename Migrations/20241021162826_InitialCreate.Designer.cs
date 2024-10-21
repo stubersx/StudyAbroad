@@ -11,7 +11,7 @@ using StudyAbroad.Models;
 namespace StudyAbroad.Migrations
 {
     [DbContext(typeof(AbroadContext))]
-    [Migration("20241009195051_InitialCreate")]
+    [Migration("20241021162826_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -165,6 +165,62 @@ namespace StudyAbroad.Migrations
                             Type = 0,
                             URL = "https://www.u-tokyo.ac.jp/ja/index.html"
                         });
+                });
+
+            modelBuilder.Entity("StudyAbroad.Models.MyBoard", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("InstitutionID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("InstitutionID");
+
+                    b.ToTable("MyBoards");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            InstitutionID = 2
+                        },
+                        new
+                        {
+                            ID = 2,
+                            InstitutionID = 6
+                        },
+                        new
+                        {
+                            ID = 3,
+                            InstitutionID = 2
+                        },
+                        new
+                        {
+                            ID = 4,
+                            InstitutionID = 1
+                        },
+                        new
+                        {
+                            ID = 5,
+                            InstitutionID = 9
+                        });
+                });
+
+            modelBuilder.Entity("StudyAbroad.Models.MyBoard", b =>
+                {
+                    b.HasOne("StudyAbroad.Models.Institution", "Institution")
+                        .WithMany()
+                        .HasForeignKey("InstitutionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Institution");
                 });
 #pragma warning restore 612, 618
         }

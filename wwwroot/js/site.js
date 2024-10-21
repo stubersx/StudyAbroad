@@ -1,4 +1,6 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿/* iframe codes */
+const iframe = document.getElementById("display");
 
-// Write your JavaScript code.
+iframe.onload = function () {
+    iframe.style.display = "block";
+}

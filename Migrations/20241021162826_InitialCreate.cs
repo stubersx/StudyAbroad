@@ -31,6 +31,25 @@ namespace StudyAbroad.Migrations
                     table.PrimaryKey("PK_Institutions", x => x.InstitutionID);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "MyBoards",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    InstitutionID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MyBoards", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_MyBoards_Institutions_InstitutionID",
+                        column: x => x.InstitutionID,
+                        principalTable: "Institutions",
+                        principalColumn: "InstitutionID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Institutions",
                 columns: new[] { "InstitutionID", "Country", "Education", "Name", "Note", "Region", "Type", "URL" },
@@ -47,11 +66,31 @@ namespace StudyAbroad.Migrations
                     { 9, "Japan", 2, "Toin Gakuen", null, "Kanagawa", 1, "https://toin.ac.jp/ses/" },
                     { 10, "Japan", 4, "University of Tokyo", null, "Tokyo", 0, "https://www.u-tokyo.ac.jp/ja/index.html" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "MyBoards",
+                columns: new[] { "ID", "InstitutionID" },
+                values: new object[,]
+                {
+                    { 1, 2 },
+                    { 2, 6 },
+                    { 3, 2 },
+                    { 4, 1 },
+                    { 5, 9 }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MyBoards_InstitutionID",
+                table: "MyBoards",
+                column: "InstitutionID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "MyBoards");
+
             migrationBuilder.DropTable(
                 name: "Institutions");
         }

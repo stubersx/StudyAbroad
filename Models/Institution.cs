@@ -2,23 +2,23 @@
 
 namespace StudyAbroad.Models
 {
+    public enum SchoolType
+    {
+        Public,
+        Private
+    }
+    public enum EducationType
+    {
+        Elementary,
+        Middle,
+        High,
+        College,
+        University,
+        Vocational
+    }
+
     public class Institution
     {
-        public enum SchoolType
-        {
-            Public,
-            Private
-        }
-        public enum EducationType
-        {
-            Elementary,
-            Middle,
-            High,
-            College,
-            University,
-            Vocational
-        }
-
         public int InstitutionID { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "Please enter the name of the institution (50 characters or less).")]

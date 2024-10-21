@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/StudyAbroad.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/abroad.css" />
-    <style>
-        body {
-            overflow-y: scroll;
-        }
-    </style>
 </head>
 <body>
     <header style="line-height: 75px;">
@@ -28,6 +23,9 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="MyBoard" asp-action="Index">My Board</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Institution" asp-action="Index">Institution List</a>
@@ -45,7 +43,7 @@
         </nav>
     </header>
     <div class="container-fluid p-0">
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
@@ -59,7 +57,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script>
+        document.getElementsByTagName("body")[0].style.overflowY = "scroll";
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
