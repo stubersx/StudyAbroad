@@ -13,8 +13,106 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="MemberID" class="control-label"></label>
+                <select asp-for="MemberID" class ="form-control" asp-items="ViewBag.MemberID"></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="InstitutionID" class="control-label"></label>
                 <select asp-for="InstitutionID" class ="form-control" asp-items="ViewBag.InstitutionID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseID" class="control-label"></label>
+                <select asp-for="CourseID" class ="form-control" asp-items="ViewBag.CourseID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Semester" class="control-label"></label>
+                <input asp-for="Semester" class="form-control" />
+                <span asp-validation-for="Semester" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HousingType" class="control-label"></label>
+                <input asp-for="HousingType" class="form-control" />
+                <span asp-validation-for="HousingType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HousingCost" class="control-label"></label>
+                <input asp-for="HousingCost" class="form-control" />
+                <span asp-validation-for="HousingCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalCost" class="control-label"></label>
+                <input asp-for="AdditionalCost" class="form-control" />
+                <span asp-validation-for="AdditionalCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoveInDate" class="control-label"></label>
+                <input asp-for="MoveInDate" class="form-control" />
+                <span asp-validation-for="MoveInDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyOwner" class="control-label"></label>
+                <input asp-for="PropertyOwner" class="form-control" />
+                <span asp-validation-for="PropertyOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact" class="control-label"></label>
+                <input asp-for="Contact" class="form-control" />
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HousingWebsite" class="control-label"></label>
+                <input asp-for="HousingWebsite" class="form-control" />
+                <span asp-validation-for="HousingWebsite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressLine1" class="control-label"></label>
+                <input asp-for="AddressLine1" class="form-control" />
+                <span asp-validation-for="AddressLine1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressLine2" class="control-label"></label>
+                <input asp-for="AddressLine2" class="form-control" />
+                <span asp-validation-for="AddressLine2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Region" class="control-label"></label>
+                <input asp-for="Region" class="form-control" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MealPlan" class="control-label"></label>
+                <input asp-for="MealPlan" class="form-control" />
+                <span asp-validation-for="MealPlan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MealCost" class="control-label"></label>
+                <input asp-for="MealCost" class="form-control" />
+                <span asp-validation-for="MealCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

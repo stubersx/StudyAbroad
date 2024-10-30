@@ -60,9 +60,12 @@ a:hover {
 
 /* 
     color schemeを考える
-    できるだけbootstrap contextual text & backgroundを使う
+    できるだけbootstrap contextual text & backgroundを使う  Index Page Comment
     全てのページでgrid layoutを使う (with rows and columns)
     全てのページのheading and titleは同じようなものにする。
+
+
+    Contact Page Image Styling Comment
 
     基本は赤
     リスト以外のテーブルとかでも目立つか試す。
@@ -79,28 +82,23 @@ a:hover {
     <i class="fa-solid fa-plane-departure"></i>
     <i class="fa-solid fa-suitcase-rolling"></i>
 
-    イベント
     カレンダー　カウンセリング
     ビザ情報
-    年齢
-    学年
-    期間
-    種類
-    国
     コラム
-    目的
     どうやって選ぶか
     なにから始めるのか
     サービス
     １０１
-    費用
-    学校検索
-    体験談
     F&Q
     パッケージ　宿泊・航空券
     メンバー限定
 
     all in one application for study abroad
     planning to tracking, gathering the information
+
+    Index page は別の共有レイアウトを使っている。↓
+    Shared > _LayoutIndex.cshtml, Shared > _LayoutIndex.cshtml.css
+    @{ Layout = null; } で Index page に移動させることもできるけど、
+    2つのファイル分を1つのファイルに含めないといけないから、別の共有ファイルを作ってる。
 
 */

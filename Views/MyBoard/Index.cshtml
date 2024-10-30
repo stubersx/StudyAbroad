@@ -13,7 +13,67 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Member)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Institution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HousingType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HousingCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdditionalCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoveInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HousingWebsite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MealPlan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MealCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
             </th>
             <th></th>
         </tr>
@@ -22,7 +82,67 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Member.Country)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Institution.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HousingType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HousingCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveInDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyOwner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HousingWebsite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealPlan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

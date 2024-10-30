@@ -9,22 +9,23 @@ using StudyAbroad.Models;
 
 namespace StudyAbroad.Controllers
 {
-    public class InstitutionController : Controller
+    public class CourseController : Controller
     {
         private readonly AbroadContext _context;
 
-        public InstitutionController(AbroadContext context)
+        public CourseController(AbroadContext context)
         {
             _context = context;
         }
 
-        // GET: Institution
+        // GET: Course
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Institutions.ToListAsync());
+            var abroadContext = _context.Courses.Include(c => c.Institution);
+            return View(await abroadContext.ToListAsync());
         }
 
-        // GET: Institution/Details/5
+        // GET: Course/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,42 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions
-                .FirstOrDefaultAsync(m => m.InstitutionID == id);
-            if (institution == null)
+            var course = await _context.Courses
+                .Include(c => c.Institution)
+                .FirstOrDefaultAsync(m => m.CourseID == id);
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(institution);
+            return View(course);
         }
 
-        // GET: Institution/Create
+        // GET: Course/Create
         public IActionResult Create()
         {
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country");
             return View();
         }
 
-        // POST: Institution/Create
+        // POST: Course/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable,CourseID")] Institution institution)
+        public async Task<IActionResult> Create([Bind("CourseID,Name,ContactHours,Duration,Tuition,Prerequisites,Description,Note,InstitutionID")] Course course)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(institution);
+                _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(institution);
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", course.InstitutionID);
+            return View(course);
         }
 
-        // GET: Institution/Edit/5
+        // GET: Course/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +76,23 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions.FindAsync(id);
-            if (institution == null)
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
             {
                 return NotFound();
             }
-            return View(institution);
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", course.InstitutionID);
+            return View(course);
         }
 
-        // POST: Institution/Edit/5
+        // POST: Course/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable,CourseID")] Institution institution)
+        public async Task<IActionResult> Edit(int id, [Bind("CourseID,Name,ContactHours,Duration,Tuition,Prerequisites,Description,Note,InstitutionID")] Course course)
         {
-            if (id != institution.InstitutionID)
+            if (id != course.CourseID)
             {
                 return NotFound();
             }
@@ -96,12 +101,12 @@ namespace StudyAbroad.Controllers
             {
                 try
                 {
-                    _context.Update(institution);
+                    _context.Update(course);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InstitutionExists(institution.InstitutionID))
+                    if (!CourseExists(course.CourseID))
                     {
                         return NotFound();
                     }
@@ -112,10 +117,11 @@ namespace StudyAbroad.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(institution);
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", course.InstitutionID);
+            return View(course);
         }
 
-        // GET: Institution/Delete/5
+        // GET: Course/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,34 +129,35 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions
-                .FirstOrDefaultAsync(m => m.InstitutionID == id);
-            if (institution == null)
+            var course = await _context.Courses
+                .Include(c => c.Institution)
+                .FirstOrDefaultAsync(m => m.CourseID == id);
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(institution);
+            return View(course);
         }
 
-        // POST: Institution/Delete/5
+        // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var institution = await _context.Institutions.FindAsync(id);
-            if (institution != null)
+            var course = await _context.Courses.FindAsync(id);
+            if (course != null)
             {
-                _context.Institutions.Remove(institution);
+                _context.Courses.Remove(course);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InstitutionExists(int id)
+        private bool CourseExists(int id)
         {
-            return _context.Institutions.Any(e => e.InstitutionID == id);
+            return _context.Courses.Any(e => e.CourseID == id);
         }
     }
 }

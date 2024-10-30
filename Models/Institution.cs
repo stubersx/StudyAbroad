@@ -7,7 +7,7 @@ namespace StudyAbroad.Models
         Public,
         Private
     }
-    public enum EducationType
+    public enum Education
     {
         Elementary,
         Middle,
@@ -20,34 +20,30 @@ namespace StudyAbroad.Models
     public class Institution
     {
         public int InstitutionID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter the name of the institution (50 characters or less).")]
         [StringLength(50, ErrorMessage = "Please enter the name of the institution (50 characters or less).")]
-        public string? Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         [Required(ErrorMessage = "Please select the type of education.")]
-        public EducationType? Education { get; set; }
+        public Education Education { get; set; }
         [Required(ErrorMessage = "Please select the type of institution.")]
-        public SchoolType? Type { get; set; }
-        [Required]
+        public SchoolType Type { get; set; }
+        [Required(ErrorMessage = "Please enter the country of the institution (30 characters or less).")]
         [StringLength(30, ErrorMessage = "Please enter the country of the institution (30 characters or less).")]
-        public string? Country { get; set; }
-        [Required]
+        public string Country { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Please enter the region of the institution (30 characters or less).")]
         [Display(Name = "State / Province / Prefecture")]
         [StringLength(30, ErrorMessage = "Please enter the region of the institution (30 characters or less).")]
-        public string? Region { get; set; }
+        public string Region { get; set; } = string.Empty;
         [Required(ErrorMessage = "Please enter the website link to the institution.")]
-        public string? URL { get; set; }
+        public string URL { get; set; } = string.Empty;
         public string? Note { get; set; }
-
-        /*
-        public string? Duration { get; set; }
-        public string? Housing { get; set; }
-        public string? Meal { get; set; }
-        public int? Tuition { get; set; }
-        public string? Program {  get; set; }
-        public bool? Member {  get; set; }
-        public int? Age { get; set; }
-        public string? Grade { get; set; }
-        public string? Gender { get; set; }
-        */
+        [Required(ErrorMessage = "Please indicate if dorms are available for international students.")]
+        [Display(Name = "Dormitory")]
+        public bool DormAvailable { get; set; }
+        [Required(ErrorMessage = "Please indicate if meal plans are available for international students.")]
+        [Display(Name = "Meal Plan")]
+        public bool MealPlanAvailable { get; set; }
+        public ICollection<Course> Courses { get; set; } = default!;
+        public int CourseID { get; set; }
     }
 }

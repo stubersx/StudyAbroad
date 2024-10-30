@@ -45,7 +45,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Education)
                             @{
-                                if (item.Education != EducationType.College && item.Education != EducationType.University)
+                                if (item.Education != Education.College && item.Education != Education.University)
                                 {
                                     <span> School</span>
                                 }

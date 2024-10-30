@@ -21,7 +21,7 @@ namespace StudyAbroad.Controllers
         // GET: MyBoard
         public async Task<IActionResult> Index()
         {
-            var abroadContext = _context.MyBoards.Include(m => m.Institution);
+            var abroadContext = _context.MyBoards.Include(m => m.Course).Include(m => m.Institution).Include(m => m.Member);
             return View(await abroadContext.ToListAsync());
         }
 
@@ -34,7 +34,9 @@ namespace StudyAbroad.Controllers
             }
 
             var myBoard = await _context.MyBoards
+                .Include(m => m.Course)
                 .Include(m => m.Institution)
+                .Include(m => m.Member)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (myBoard == null)
             {
@@ -47,7 +49,9 @@ namespace StudyAbroad.Controllers
         // GET: MyBoard/Create
         public IActionResult Create()
         {
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name");
             ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country");
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country");
             return View();
         }
 
@@ -56,7 +60,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,InstitutionID")] MyBoard myBoard)
+        public async Task<IActionResult> Create([Bind("ID,MemberID,InstitutionID,CourseID,Semester,Year,HousingType,HousingCost,AdditionalCost,MoveInDate,PropertyOwner,Contact,HousingWebsite,AddressLine1,AddressLine2,City,Region,ZipCode,Country,MealPlan,MealCost,Note")] MyBoard myBoard)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +68,9 @@ namespace StudyAbroad.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", myBoard.CourseID);
             ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", myBoard.InstitutionID);
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country", myBoard.MemberID);
             return View(myBoard);
         }
 
@@ -81,7 +87,9 @@ namespace StudyAbroad.Controllers
             {
                 return NotFound();
             }
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", myBoard.CourseID);
             ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", myBoard.InstitutionID);
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country", myBoard.MemberID);
             return View(myBoard);
         }
 
@@ -90,7 +98,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,InstitutionID")] MyBoard myBoard)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,MemberID,InstitutionID,CourseID,Semester,Year,HousingType,HousingCost,AdditionalCost,MoveInDate,PropertyOwner,Contact,HousingWebsite,AddressLine1,AddressLine2,City,Region,ZipCode,Country,MealPlan,MealCost,Note")] MyBoard myBoard)
         {
             if (id != myBoard.ID)
             {
@@ -117,7 +125,9 @@ namespace StudyAbroad.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", myBoard.CourseID);
             ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", myBoard.InstitutionID);
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country", myBoard.MemberID);
             return View(myBoard);
         }
 
@@ -130,7 +140,9 @@ namespace StudyAbroad.Controllers
             }
 
             var myBoard = await _context.MyBoards
+                .Include(m => m.Course)
                 .Include(m => m.Institution)
+                .Include(m => m.Member)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (myBoard == null)
             {

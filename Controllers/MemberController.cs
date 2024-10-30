@@ -9,22 +9,22 @@ using StudyAbroad.Models;
 
 namespace StudyAbroad.Controllers
 {
-    public class InstitutionController : Controller
+    public class MemberController : Controller
     {
         private readonly AbroadContext _context;
 
-        public InstitutionController(AbroadContext context)
+        public MemberController(AbroadContext context)
         {
             _context = context;
         }
 
-        // GET: Institution
+        // GET: Member
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Institutions.ToListAsync());
+            return View(await _context.Members.ToListAsync());
         }
 
-        // GET: Institution/Details/5
+        // GET: Member/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions
-                .FirstOrDefaultAsync(m => m.InstitutionID == id);
-            if (institution == null)
+            var member = await _context.Members
+                .FirstOrDefaultAsync(m => m.MemberID == id);
+            if (member == null)
             {
                 return NotFound();
             }
 
-            return View(institution);
+            return View(member);
         }
 
-        // GET: Institution/Create
+        // GET: Member/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Institution/Create
+        // POST: Member/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable,CourseID")] Institution institution)
+        public async Task<IActionResult> Create([Bind("MemberID,FirstName,LastName,Gender,Age,Grade,Country,Region,RegistrationDate,Note")] Member member)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(institution);
+                _context.Add(member);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(institution);
+            return View(member);
         }
 
-        // GET: Institution/Edit/5
+        // GET: Member/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions.FindAsync(id);
-            if (institution == null)
+            var member = await _context.Members.FindAsync(id);
+            if (member == null)
             {
                 return NotFound();
             }
-            return View(institution);
+            return View(member);
         }
 
-        // POST: Institution/Edit/5
+        // POST: Member/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable,CourseID")] Institution institution)
+        public async Task<IActionResult> Edit(int id, [Bind("MemberID,FirstName,LastName,Gender,Age,Grade,Country,Region,RegistrationDate,Note")] Member member)
         {
-            if (id != institution.InstitutionID)
+            if (id != member.MemberID)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace StudyAbroad.Controllers
             {
                 try
                 {
-                    _context.Update(institution);
+                    _context.Update(member);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InstitutionExists(institution.InstitutionID))
+                    if (!MemberExists(member.MemberID))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace StudyAbroad.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(institution);
+            return View(member);
         }
 
-        // GET: Institution/Delete/5
+        // GET: Member/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,34 +123,34 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions
-                .FirstOrDefaultAsync(m => m.InstitutionID == id);
-            if (institution == null)
+            var member = await _context.Members
+                .FirstOrDefaultAsync(m => m.MemberID == id);
+            if (member == null)
             {
                 return NotFound();
             }
 
-            return View(institution);
+            return View(member);
         }
 
-        // POST: Institution/Delete/5
+        // POST: Member/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var institution = await _context.Institutions.FindAsync(id);
-            if (institution != null)
+            var member = await _context.Members.FindAsync(id);
+            if (member != null)
             {
-                _context.Institutions.Remove(institution);
+                _context.Members.Remove(member);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InstitutionExists(int id)
+        private bool MemberExists(int id)
         {
-            return _context.Institutions.Any(e => e.InstitutionID == id);
+            return _context.Members.Any(e => e.MemberID == id);
         }
     }
 }
