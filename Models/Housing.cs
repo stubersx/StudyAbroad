@@ -9,15 +9,9 @@ namespace StudyAbroad.Models
         Summer
     }
 
-    public class MyBoard
+    public class Housing
     {
-        public int ID { get; set; }
-        public Member Member { get; set; } = default!;
-        public int MemberID { get; set; }
-        public Institution Institution { get; set; } = default!;
-        public int? InstitutionID { get; set; }
-        public Course Course { get; set; } = default!;
-        public int? CourseID { get; set; }
+        public int HousingID { get; set; }
         public Semester? Semester { get; set; }
         [Range(2024, 2029, ErrorMessage = "Please enter the year you will attend (between 2024 and 2029).")]
         public int? Year { get; set; }
@@ -35,9 +29,6 @@ namespace StudyAbroad.Models
         [DataType(DataType.Date)]
         [Display(Name = "Move-in Date")]
         public DateTime? MoveInDate { get; set; }
-        [Display(Name = "Property Owner")]
-        [StringLength(50, ErrorMessage = "Please enter the name of the property owner (50 characters or less).")]
-        public string? PropertyOwner { get; set; }
         public string? Contact { get; set; }
         [Display(Name = "Housing Website")]
         public string? HousingWebsite { get; set; }
@@ -64,6 +55,7 @@ namespace StudyAbroad.Models
         [Range(1, double.MaxValue, ErrorMessage = "Please enter the cost of the meal in US dollars.")]
         [DataType(DataType.Currency)]
         public double? MealCost { get; set; }
-        public string? Note { get; set; } 
+        public string? Note { get; set; }
+        public ICollection<Member> Members { get; set; } = new List<Member>();
     }
 }

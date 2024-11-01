@@ -6,10 +6,11 @@ namespace StudyAbroad.Models
     public class AbroadContext : DbContext
     {
         public AbroadContext(DbContextOptions<AbroadContext> options) : base(options) { }
-        public DbSet<Member> Members { get; set; }
-        public DbSet<MyBoard> MyBoards { get; set; }
-        public DbSet<Institution> Institutions { get; set; }
-        public DbSet<Course> Courses { get; set; }
+        public DbSet<Institution> Institutions { get; set; } = null!;
+        public DbSet<Course> Courses { get; set; } = null!;
+        public DbSet<Housing> Housings { get; set; } = null!;
+        public DbSet<Member> Members { get; set; } = null!;
+        public DbSet<CourseMember> CourseMembers { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -135,6 +136,73 @@ namespace StudyAbroad.Models
                     MealPlanAvailable = false
                 }
             );
+            modelBuilder.Entity<Housing>().HasData(
+                new Housing
+                {
+                    HousingID = 1,
+                    Semester = Semester.Summer,
+                    Year = 2025,
+                    HousingType = "Homestay",
+                    HousingCost = 1200,
+                    MoveInDate = DateTime.Parse("2025-6-20"),
+                    Contact = "090-5566-1234",
+                    HousingWebsite = "https://homestay/housing1",
+                    AddressLine1 = "2-6 Midori-cho",
+                    City = "Koganei",
+                    Region = "Tokyo",
+                    ZipCode = "184-0003",
+                    Country = "Japan"
+                },
+                new Housing
+                {
+                    HousingID = 2,
+                    Semester = Semester.Spring,
+                    Year = 2025,
+                    HousingType = "Dormitory",
+                    HousingCost = 800,
+                    MoveInDate = DateTime.Parse("2025-8-25"),
+                    Contact = "080-2233-5678",
+                    HousingWebsite = "https://dorm/housing2",
+                    AddressLine1 = "7-3 Hongou",
+                    City = "Bunkyo-ku",
+                    Region = "Tokyo",
+                    ZipCode = "113-8654",
+                    Country = "Japan",
+                    MealCost = 800
+                },
+                new Housing
+                {
+                    HousingID = 3,
+                    Semester = Semester.Spring,
+                    Year = 2025
+                },
+                new Housing
+                {
+                    HousingID = 4,
+                    Semester = Semester.Fall,
+                    Year = 2025,
+                    HousingType = "Appartment",
+                    HousingCost = 700,
+                    AdditionalCost = 500,
+                    MoveInDate = DateTime.Parse("2025-8-25"),
+                    Contact = "231-226-1234",
+                    HousingWebsite = "https://appartment/housing3",
+                    AddressLine1 = "1701 E Front St.",
+                    AddressLine2 = "Apt. 204",
+                    City = "Traverse City",
+                    Region = "Michigan",
+                    ZipCode = "49686",
+                    Country = "United States",
+                    MealPlan = "PLAN B",
+                    MealCost = 1550
+                },
+                new Housing
+                {
+                    HousingID = 5,
+                    Semester = Semester.Fall,
+                    Year = 2026
+                }
+            );
             modelBuilder.Entity<Course>().HasData(
                 new Course
                 {
@@ -213,6 +281,7 @@ namespace StudyAbroad.Models
                     Country = "United States",
                     Region = "Michigan",
                     RegistrationDate = DateTime.Parse("2024-10-27"),
+                    HousingID = 5
                 },
                 new Member
                 {
@@ -224,6 +293,7 @@ namespace StudyAbroad.Models
                     Country = "United States",
                     Region = "Florida",
                     RegistrationDate = DateTime.Parse("2024-9-10"),
+                    HousingID = 2
                 },
                 new Member
                 {
@@ -235,6 +305,7 @@ namespace StudyAbroad.Models
                     Country = "France",
                     Region = "Paris",
                     RegistrationDate = DateTime.Parse("2024-10-14"),
+                    HousingID = 4
                 },
                 new Member
                 {
@@ -247,6 +318,7 @@ namespace StudyAbroad.Models
                     Country = "Spain",
                     Region = "Madrid",
                     RegistrationDate = DateTime.Parse("2024-8-17"),
+                    HousingID = 1
                 },
                 new Member
                 {
@@ -258,89 +330,15 @@ namespace StudyAbroad.Models
                     Country = "United Kingdom",
                     Region = "London",
                     RegistrationDate = DateTime.Parse("2024-9-22"),
+                    HousingID = 3
                 }
             );
-            modelBuilder.Entity<MyBoard>().HasData(
-                new MyBoard
+            modelBuilder.Entity<CourseMember>().HasData(
+                new CourseMember
                 {
-                    ID = 1,
-                    MemberID = 4,
-                    InstitutionID = 7,
-                    CourseID = 6,
-                    Semester = Semester.Summer,
-                    Year = 2025,
-                    HousingType = "Homestay",
-                    HousingCost = 1200,
-                    MoveInDate = DateTime.Parse("2025-6-20"),
-                    PropertyOwner = "Riku Aoki",
-                    Contact = "090-5566-1234",
-                    HousingWebsite = "https://homestay/housing1",
-                    AddressLine1 = "2-6 Midori-cho",
-                    City = "Koganei",
-                    Region = "Tokyo",
-                    ZipCode = "184-0003",
-                    Country = "Japan"
-                },
-                new MyBoard
-                { 
-                    ID = 2,
-                    MemberID = 2,
-                    InstitutionID = 10,
-                    CourseID = 3,
-                    Semester = Semester.Spring,
-                    Year = 2025,
-                    HousingType = "Dormitory",
-                    HousingCost = 800,
-                    MoveInDate = DateTime.Parse("2025-8-25"),
-                    PropertyOwner = "Kazumi Saitou",
-                    Contact = "080-2233-5678",
-                    HousingWebsite = "https://dorm/housing2",
-                    AddressLine1 = "7-3 Hongou",
-                    City = "Bunkyo-ku",
-                    Region = "Tokyo",
-                    ZipCode = "113-8654",
-                    Country = "Japan",
-                    MealCost = 800
-                },
-                new MyBoard
-                { 
-                    ID = 3,
-                    MemberID = 5,
-                    InstitutionID = 6,
-                    CourseID = 5,
-                    Semester = Semester.Spring,
-                    Year = 2025
-                },
-                new MyBoard
-                { 
-                    ID = 4,
-                    MemberID = 3,
-                    InstitutionID = 1,
+                    ID  = 1,
                     CourseID = 1,
-                    Semester = Semester.Fall,
-                    Year = 2025,
-                    HousingType = "Appartment",
-                    HousingCost = 700,
-                    AdditionalCost = 500,
-                    MoveInDate = DateTime.Parse("2025-8-25"),
-                    PropertyOwner = "Jon Green",
-                    Contact = "231-226-1234",
-                    HousingWebsite = "https://appartment/housing3",
-                    AddressLine1 = "1701 E Front St.",
-                    AddressLine2 = "Apt. 204",
-                    City = "Traverse City",
-                    Region = "Michigan",
-                    ZipCode = "49686",
-                    Country = "United States",
-                    MealPlan = "PLAN B",
-                    MealCost = 1550
-                },
-                new MyBoard
-                {
-                    ID = 5,
-                    MemberID = 1,
-                    Semester = Semester.Fall,
-                    Year = 2026
+                    MemberID = 1
                 }
             );
         }

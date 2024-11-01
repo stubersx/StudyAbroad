@@ -43,7 +43,6 @@ namespace StudyAbroad.Models
         [Required(ErrorMessage = "Please indicate if meal plans are available for international students.")]
         [Display(Name = "Meal Plan")]
         public bool MealPlanAvailable { get; set; }
-        public ICollection<Course> Courses { get; set; } = default!;
-        public int CourseID { get; set; }
+        public ICollection<Course> Courses { get; set; } = new List<Course>();
     }
 }

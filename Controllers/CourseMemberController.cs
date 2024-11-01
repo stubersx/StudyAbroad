@@ -9,23 +9,23 @@ using StudyAbroad.Models;
 
 namespace StudyAbroad.Controllers
 {
-    public class MemberController : Controller
+    public class CourseMemberController : Controller
     {
         private readonly AbroadContext _context;
 
-        public MemberController(AbroadContext context)
+        public CourseMemberController(AbroadContext context)
         {
             _context = context;
         }
 
-        // GET: Member
+        // GET: CourseMember
         public async Task<IActionResult> Index()
         {
-            var abroadContext = _context.Members.Include(m => m.Housing);
+            var abroadContext = _context.CourseMembers.Include(c => c.Course).Include(c => c.Member);
             return View(await abroadContext.ToListAsync());
         }
 
-        // GET: Member/Details/5
+        // GET: CourseMember/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +33,45 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var member = await _context.Members
-                .Include(m => m.Housing)
-                .FirstOrDefaultAsync(m => m.MemberID == id);
-            if (member == null)
+            var courseMember = await _context.CourseMembers
+                .Include(c => c.Course)
+                .Include(c => c.Member)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (courseMember == null)
             {
                 return NotFound();
             }
 
-            return View(member);
+            return View(courseMember);
         }
 
-        // GET: Member/Create
+        // GET: CourseMember/Create
         public IActionResult Create()
         {
-            ViewData["HousingID"] = new SelectList(_context.Housings, "HousingID", "HousingID");
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name");
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country");
             return View();
         }
 
-        // POST: Member/Create
+        // POST: CourseMember/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MemberID,FirstName,LastName,Gender,Age,Grade,Country,Region,RegistrationDate,Note,HousingID")] Member member)
+        public async Task<IActionResult> Create([Bind("ID,CourseID,MemberID")] CourseMember courseMember)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(member);
+                _context.Add(courseMember);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HousingID"] = new SelectList(_context.Housings, "HousingID", "HousingID", member.HousingID);
-            return View(member);
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", courseMember.CourseID);
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country", courseMember.MemberID);
+            return View(courseMember);
         }
 
-        // GET: Member/Edit/5
+        // GET: CourseMember/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +79,24 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var member = await _context.Members.FindAsync(id);
-            if (member == null)
+            var courseMember = await _context.CourseMembers.FindAsync(id);
+            if (courseMember == null)
             {
                 return NotFound();
             }
-            ViewData["HousingID"] = new SelectList(_context.Housings, "HousingID", "HousingID", member.HousingID);
-            return View(member);
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", courseMember.CourseID);
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country", courseMember.MemberID);
+            return View(courseMember);
         }
 
-        // POST: Member/Edit/5
+        // POST: CourseMember/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MemberID,FirstName,LastName,Gender,Age,Grade,Country,Region,RegistrationDate,Note,HousingID")] Member member)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CourseID,MemberID")] CourseMember courseMember)
         {
-            if (id != member.MemberID)
+            if (id != courseMember.ID)
             {
                 return NotFound();
             }
@@ -101,12 +105,12 @@ namespace StudyAbroad.Controllers
             {
                 try
                 {
-                    _context.Update(member);
+                    _context.Update(courseMember);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MemberExists(member.MemberID))
+                    if (!CourseMemberExists(courseMember.ID))
                     {
                         return NotFound();
                     }
@@ -117,11 +121,12 @@ namespace StudyAbroad.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HousingID"] = new SelectList(_context.Housings, "HousingID", "HousingID", member.HousingID);
-            return View(member);
+            ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", courseMember.CourseID);
+            ViewData["MemberID"] = new SelectList(_context.Members, "MemberID", "Country", courseMember.MemberID);
+            return View(courseMember);
         }
 
-        // GET: Member/Delete/5
+        // GET: CourseMember/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,35 +134,36 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var member = await _context.Members
-                .Include(m => m.Housing)
-                .FirstOrDefaultAsync(m => m.MemberID == id);
-            if (member == null)
+            var courseMember = await _context.CourseMembers
+                .Include(c => c.Course)
+                .Include(c => c.Member)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (courseMember == null)
             {
                 return NotFound();
             }
 
-            return View(member);
+            return View(courseMember);
         }
 
-        // POST: Member/Delete/5
+        // POST: CourseMember/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var member = await _context.Members.FindAsync(id);
-            if (member != null)
+            var courseMember = await _context.CourseMembers.FindAsync(id);
+            if (courseMember != null)
             {
-                _context.Members.Remove(member);
+                _context.CourseMembers.Remove(courseMember);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MemberExists(int id)
+        private bool CourseMemberExists(int id)
         {
-            return _context.Members.Any(e => e.MemberID == id);
+            return _context.CourseMembers.Any(e => e.ID == id);
         }
     }
 }

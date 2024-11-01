@@ -9,22 +9,22 @@ using StudyAbroad.Models;
 
 namespace StudyAbroad.Controllers
 {
-    public class InstitutionController : Controller
+    public class HousingController : Controller
     {
         private readonly AbroadContext _context;
 
-        public InstitutionController(AbroadContext context)
+        public HousingController(AbroadContext context)
         {
             _context = context;
         }
 
-        // GET: Institution
+        // GET: Housing
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Institutions.ToListAsync());
+            return View(await _context.Housings.ToListAsync());
         }
 
-        // GET: Institution/Details/5
+        // GET: Housing/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions
-                .FirstOrDefaultAsync(m => m.InstitutionID == id);
-            if (institution == null)
+            var housing = await _context.Housings
+                .FirstOrDefaultAsync(m => m.HousingID == id);
+            if (housing == null)
             {
                 return NotFound();
             }
 
-            return View(institution);
+            return View(housing);
         }
 
-        // GET: Institution/Create
+        // GET: Housing/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Institution/Create
+        // POST: Housing/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable")] Institution institution)
+        public async Task<IActionResult> Create([Bind("HousingID,Semester,Year,HousingType,HousingCost,AdditionalCost,MoveInDate,Contact,HousingWebsite,AddressLine1,AddressLine2,City,Region,ZipCode,Country,MealPlan,MealCost,Note")] Housing housing)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(institution);
+                _context.Add(housing);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(institution);
+            return View(housing);
         }
 
-        // GET: Institution/Edit/5
+        // GET: Housing/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions.FindAsync(id);
-            if (institution == null)
+            var housing = await _context.Housings.FindAsync(id);
+            if (housing == null)
             {
                 return NotFound();
             }
-            return View(institution);
+            return View(housing);
         }
 
-        // POST: Institution/Edit/5
+        // POST: Housing/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable")] Institution institution)
+        public async Task<IActionResult> Edit(int id, [Bind("HousingID,Semester,Year,HousingType,HousingCost,AdditionalCost,MoveInDate,Contact,HousingWebsite,AddressLine1,AddressLine2,City,Region,ZipCode,Country,MealPlan,MealCost,Note")] Housing housing)
         {
-            if (id != institution.InstitutionID)
+            if (id != housing.HousingID)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace StudyAbroad.Controllers
             {
                 try
                 {
-                    _context.Update(institution);
+                    _context.Update(housing);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InstitutionExists(institution.InstitutionID))
+                    if (!HousingExists(housing.HousingID))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace StudyAbroad.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(institution);
+            return View(housing);
         }
 
-        // GET: Institution/Delete/5
+        // GET: Housing/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,34 +123,34 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var institution = await _context.Institutions
-                .FirstOrDefaultAsync(m => m.InstitutionID == id);
-            if (institution == null)
+            var housing = await _context.Housings
+                .FirstOrDefaultAsync(m => m.HousingID == id);
+            if (housing == null)
             {
                 return NotFound();
             }
 
-            return View(institution);
+            return View(housing);
         }
 
-        // POST: Institution/Delete/5
+        // POST: Housing/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var institution = await _context.Institutions.FindAsync(id);
-            if (institution != null)
+            var housing = await _context.Housings.FindAsync(id);
+            if (housing != null)
             {
-                _context.Institutions.Remove(institution);
+                _context.Housings.Remove(housing);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InstitutionExists(int id)
+        private bool HousingExists(int id)
         {
-            return _context.Institutions.Any(e => e.InstitutionID == id);
+            return _context.Housings.Any(e => e.HousingID == id);
         }
     }
 }

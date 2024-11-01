@@ -59,6 +59,11 @@
                 <span asp-validation-for="Note" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="HousingID" class="control-label"></label>
+                <select asp-for="HousingID" class="form-control" asp-items="ViewBag.HousingID"></select>
+                <span asp-validation-for="HousingID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

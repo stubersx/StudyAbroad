@@ -129,6 +129,176 @@ namespace StudyAbroad.Migrations
                         });
                 });
 
+            modelBuilder.Entity("StudyAbroad.Models.CourseMember", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CourseID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("MemberID");
+
+                    b.ToTable("CourseMembers");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CourseID = 1,
+                            MemberID = 1
+                        });
+                });
+
+            modelBuilder.Entity("StudyAbroad.Models.Housing", b =>
+                {
+                    b.Property<int>("HousingID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HousingID"));
+
+                    b.Property<double?>("AdditionalCost")
+                        .HasColumnType("float");
+
+                    b.Property<string>("AddressLine1")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AddressLine2")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Contact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<double?>("HousingCost")
+                        .HasColumnType("float");
+
+                    b.Property<string>("HousingType")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("HousingWebsite")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("MealCost")
+                        .HasColumnType("float");
+
+                    b.Property<string>("MealPlan")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("MoveInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int?>("Semester")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Year")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ZipCode")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("HousingID");
+
+                    b.ToTable("Housings");
+
+                    b.HasData(
+                        new
+                        {
+                            HousingID = 1,
+                            AddressLine1 = "2-6 Midori-cho",
+                            City = "Koganei",
+                            Contact = "090-5566-1234",
+                            Country = "Japan",
+                            HousingCost = 1200.0,
+                            HousingType = "Homestay",
+                            HousingWebsite = "https://homestay/housing1",
+                            MoveInDate = new DateTime(2025, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "Tokyo",
+                            Semester = 2,
+                            Year = 2025,
+                            ZipCode = "184-0003"
+                        },
+                        new
+                        {
+                            HousingID = 2,
+                            AddressLine1 = "7-3 Hongou",
+                            City = "Bunkyo-ku",
+                            Contact = "080-2233-5678",
+                            Country = "Japan",
+                            HousingCost = 800.0,
+                            HousingType = "Dormitory",
+                            HousingWebsite = "https://dorm/housing2",
+                            MealCost = 800.0,
+                            MoveInDate = new DateTime(2025, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "Tokyo",
+                            Semester = 1,
+                            Year = 2025,
+                            ZipCode = "113-8654"
+                        },
+                        new
+                        {
+                            HousingID = 3,
+                            Semester = 1,
+                            Year = 2025
+                        },
+                        new
+                        {
+                            HousingID = 4,
+                            AdditionalCost = 500.0,
+                            AddressLine1 = "1701 E Front St.",
+                            AddressLine2 = "Apt. 204",
+                            City = "Traverse City",
+                            Contact = "231-226-1234",
+                            Country = "United States",
+                            HousingCost = 700.0,
+                            HousingType = "Appartment",
+                            HousingWebsite = "https://appartment/housing3",
+                            MealCost = 1550.0,
+                            MealPlan = "PLAN B",
+                            MoveInDate = new DateTime(2025, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "Michigan",
+                            Semester = 0,
+                            Year = 2025,
+                            ZipCode = "49686"
+                        },
+                        new
+                        {
+                            HousingID = 5,
+                            Semester = 0,
+                            Year = 2026
+                        });
+                });
+
             modelBuilder.Entity("StudyAbroad.Models.Institution", b =>
                 {
                     b.Property<int>("InstitutionID")
@@ -141,9 +311,6 @@ namespace StudyAbroad.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<int>("CourseID")
-                        .HasColumnType("int");
 
                     b.Property<bool>("DormAvailable")
                         .HasColumnType("bit");
@@ -183,7 +350,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 1,
                             Country = "United States",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 3,
                             MealPlanAvailable = true,
@@ -196,7 +362,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 2,
                             Country = "Canada",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 3,
                             MealPlanAvailable = true,
@@ -209,7 +374,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 3,
                             Country = "Philippines",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 3,
                             MealPlanAvailable = false,
@@ -222,7 +386,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 4,
                             Country = "United Kingdom",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 4,
                             MealPlanAvailable = false,
@@ -235,7 +398,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 5,
                             Country = "Ireland",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 4,
                             MealPlanAvailable = true,
@@ -248,7 +410,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 6,
                             Country = "Germany",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 4,
                             MealPlanAvailable = false,
@@ -261,7 +422,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 7,
                             Country = "Japan",
-                            CourseID = 0,
                             DormAvailable = false,
                             Education = 1,
                             MealPlanAvailable = true,
@@ -274,7 +434,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 8,
                             Country = "Japan",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 2,
                             MealPlanAvailable = false,
@@ -287,7 +446,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 9,
                             Country = "Japan",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 2,
                             MealPlanAvailable = false,
@@ -300,7 +458,6 @@ namespace StudyAbroad.Migrations
                         {
                             InstitutionID = 10,
                             Country = "Japan",
-                            CourseID = 0,
                             DormAvailable = true,
                             Education = 4,
                             MealPlanAvailable = false,
@@ -338,6 +495,9 @@ namespace StudyAbroad.Migrations
                     b.Property<int?>("Grade")
                         .HasColumnType("int");
 
+                    b.Property<int>("HousingID")
+                        .HasColumnType("int");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -356,6 +516,8 @@ namespace StudyAbroad.Migrations
 
                     b.HasKey("MemberID");
 
+                    b.HasIndex("HousingID");
+
                     b.ToTable("Members");
 
                     b.HasData(
@@ -367,6 +529,7 @@ namespace StudyAbroad.Migrations
                             FirstName = "Clarice",
                             Gender = 1,
                             Grade = 12,
+                            HousingID = 5,
                             LastName = "Langston",
                             Region = "Michigan",
                             RegistrationDate = new DateTime(2024, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -378,6 +541,7 @@ namespace StudyAbroad.Migrations
                             Country = "United States",
                             FirstName = "Alden",
                             Gender = 0,
+                            HousingID = 2,
                             LastName = "Ellisson",
                             Region = "Florida",
                             RegistrationDate = new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -389,6 +553,7 @@ namespace StudyAbroad.Migrations
                             Country = "France",
                             FirstName = "Lucas",
                             Gender = 0,
+                            HousingID = 4,
                             LastName = "Barre",
                             Region = "Paris",
                             RegistrationDate = new DateTime(2024, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -401,6 +566,7 @@ namespace StudyAbroad.Migrations
                             FirstName = "Roberta",
                             Gender = 1,
                             Grade = 9,
+                            HousingID = 1,
                             LastName = "Garza",
                             Region = "Madrid",
                             RegistrationDate = new DateTime(2024, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -412,183 +578,10 @@ namespace StudyAbroad.Migrations
                             Country = "United Kingdom",
                             FirstName = "Danny",
                             Gender = 0,
+                            HousingID = 3,
                             LastName = "Salmon",
                             Region = "London",
                             RegistrationDate = new DateTime(2024, 9, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
-                });
-
-            modelBuilder.Entity("StudyAbroad.Models.MyBoard", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<double?>("AdditionalCost")
-                        .HasColumnType("float");
-
-                    b.Property<string>("AddressLine1")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AddressLine2")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("City")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Contact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<int?>("CourseID")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("HousingCost")
-                        .HasColumnType("float");
-
-                    b.Property<string>("HousingType")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("HousingWebsite")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("InstitutionID")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("MealCost")
-                        .HasColumnType("float");
-
-                    b.Property<string>("MealPlan")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("MoveInDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PropertyOwner")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Region")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<int?>("Semester")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Year")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ZipCode")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CourseID");
-
-                    b.HasIndex("InstitutionID");
-
-                    b.HasIndex("MemberID");
-
-                    b.ToTable("MyBoards");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            AddressLine1 = "2-6 Midori-cho",
-                            City = "Koganei",
-                            Contact = "090-5566-1234",
-                            Country = "Japan",
-                            CourseID = 6,
-                            HousingCost = 1200.0,
-                            HousingType = "Homestay",
-                            HousingWebsite = "https://homestay/housing1",
-                            InstitutionID = 7,
-                            MemberID = 4,
-                            MoveInDate = new DateTime(2025, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PropertyOwner = "Riku Aoki",
-                            Region = "Tokyo",
-                            Semester = 2,
-                            Year = 2025,
-                            ZipCode = "184-0003"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            AddressLine1 = "7-3 Hongou",
-                            City = "Bunkyo-ku",
-                            Contact = "080-2233-5678",
-                            Country = "Japan",
-                            CourseID = 3,
-                            HousingCost = 800.0,
-                            HousingType = "Dormitory",
-                            HousingWebsite = "https://dorm/housing2",
-                            InstitutionID = 10,
-                            MealCost = 800.0,
-                            MemberID = 2,
-                            MoveInDate = new DateTime(2025, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PropertyOwner = "Kazumi Saitou",
-                            Region = "Tokyo",
-                            Semester = 1,
-                            Year = 2025,
-                            ZipCode = "113-8654"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            CourseID = 5,
-                            InstitutionID = 6,
-                            MemberID = 5,
-                            Semester = 1,
-                            Year = 2025
-                        },
-                        new
-                        {
-                            ID = 4,
-                            AdditionalCost = 500.0,
-                            AddressLine1 = "1701 E Front St.",
-                            AddressLine2 = "Apt. 204",
-                            City = "Traverse City",
-                            Contact = "231-226-1234",
-                            Country = "United States",
-                            CourseID = 1,
-                            HousingCost = 700.0,
-                            HousingType = "Appartment",
-                            HousingWebsite = "https://appartment/housing3",
-                            InstitutionID = 1,
-                            MealCost = 1550.0,
-                            MealPlan = "PLAN B",
-                            MemberID = 3,
-                            MoveInDate = new DateTime(2025, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PropertyOwner = "Jon Green",
-                            Region = "Michigan",
-                            Semester = 0,
-                            Year = 2025,
-                            ZipCode = "49686"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            MemberID = 1,
-                            Semester = 0,
-                            Year = 2026
                         });
                 });
 
@@ -603,32 +596,54 @@ namespace StudyAbroad.Migrations
                     b.Navigation("Institution");
                 });
 
-            modelBuilder.Entity("StudyAbroad.Models.MyBoard", b =>
+            modelBuilder.Entity("StudyAbroad.Models.CourseMember", b =>
                 {
                     b.HasOne("StudyAbroad.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseID");
-
-                    b.HasOne("StudyAbroad.Models.Institution", "Institution")
-                        .WithMany()
-                        .HasForeignKey("InstitutionID");
+                        .WithMany("CourseMembers")
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StudyAbroad.Models.Member", "Member")
-                        .WithMany()
+                        .WithMany("CourseMembers")
                         .HasForeignKey("MemberID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("Institution");
-
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("StudyAbroad.Models.Member", b =>
+                {
+                    b.HasOne("StudyAbroad.Models.Housing", "Housing")
+                        .WithMany("Members")
+                        .HasForeignKey("HousingID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Housing");
+                });
+
+            modelBuilder.Entity("StudyAbroad.Models.Course", b =>
+                {
+                    b.Navigation("CourseMembers");
+                });
+
+            modelBuilder.Entity("StudyAbroad.Models.Housing", b =>
+                {
+                    b.Navigation("Members");
                 });
 
             modelBuilder.Entity("StudyAbroad.Models.Institution", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("StudyAbroad.Models.Member", b =>
+                {
+                    b.Navigation("CourseMembers");
                 });
 #pragma warning restore 612, 618
         }

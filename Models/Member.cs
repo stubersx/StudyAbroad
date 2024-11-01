@@ -39,6 +39,9 @@ namespace StudyAbroad.Models
         [DataType(DataType.Date)]
         public DateTime RegistrationDate { get; set; }
         public string? Note { get; set; }
+        public int HousingID { get; set; }
+        public Housing? Housing { get; set; }
+        public ICollection<CourseMember> CourseMembers { get; set; } = new List<CourseMember>();
 
         /* public string Email { get; set; } - Use Register/Login Information? */
     }
