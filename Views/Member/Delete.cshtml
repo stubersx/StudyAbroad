@@ -10,7 +10,7 @@
 <div>
     <h4>Member</h4>
     <hr />
-    <dl class="row">
+    <dl class="row cover">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -79,3 +79,16 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+<style>
+    body {
+        font-family: monospace;
+        color: white;
+        background-image: url("/../images/note.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        font-family: monospace;
+    }
+</style>

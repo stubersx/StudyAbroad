@@ -29,6 +29,7 @@ namespace StudyAbroad.Models
         public string? Prerequisites { get; set; }
         public string? Description { get; set; }
         public string? Note { get; set; }
+
         public int InstitutionID { get; set; }
         public Institution? Institution { get; set; }
         public ICollection<CourseMember> CourseMembers { get; set; } = new List<CourseMember>();

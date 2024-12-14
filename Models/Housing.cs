@@ -84,6 +84,7 @@ namespace StudyAbroad.Models
         public double? MealCost { get; set; }
 
         public string? Note { get; set; }
+
         public ICollection<Member> Members { get; set; } = new List<Member>();
     }
 }

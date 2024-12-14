@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudyAbroad.Models;
+using StudyAbroad.ViewModel;
 
 namespace StudyAbroad.Controllers
 {
@@ -16,6 +18,20 @@ namespace StudyAbroad.Controllers
         public CourseController(AbroadContext context)
         {
             _context = context;
+        }
+
+        public IActionResult InstCount()
+        {
+            IQueryable<InstitutionGroup> data = (
+                from query in _context.Courses.Include(e => e.Institution)
+                group query by query.Institution.Name into instGroup
+                select new InstitutionGroup()
+                {
+                    InstitutionID = instGroup.Key,
+                    InstitutionCount = instGroup.Count()
+                })
+                .OrderBy(q => q.InstitutionID);
+            return View(data.ToList());
         }
 
         // GET: Course
@@ -45,6 +61,7 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Course/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country");
@@ -69,6 +86,7 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Course/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -122,6 +140,7 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Course/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

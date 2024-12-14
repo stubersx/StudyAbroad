@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/StudyAbroad.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/abroad.css" />
 </head>
-<body>
+<body style="background-color: white;">
     <div id="cover">
         <p id="msg" style="color: white;"></p>
     </div>
@@ -29,19 +29,19 @@
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Institution" asp-action="Index">Institution List</a>
+                                <a class="nav-link" asp-area="" asp-controller="Institution" asp-action="Index">Find Institutions</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">Program List</a>
+                                <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">Find Programs</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Housing" asp-action="Index">Housing List</a>
+                                <a class="nav-link" asp-area="" asp-controller="Housing" asp-action="Index">Find Housing</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Member" asp-action="Index">Member List</a>
+                                <a class="nav-link" asp-area="" asp-controller="Member" asp-action="Index">Member</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="CourseMember" asp-action="Index">CourseMember List</a>
+                                <a class="nav-link" asp-area="" asp-controller="Course" asp-action="InstCount">Courses Per Inst.</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
@@ -61,9 +61,9 @@
             </main>
         </div>
 
-        <footer class="border-top footer text-muted">
+        <footer class="border-top footer">
             <div class="container">
-                &copy; 2024 Study Abroad - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                &copy; 2024 Study Abroad - <a class="text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>
     </div>

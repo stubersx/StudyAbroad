@@ -1,42 +1,40 @@
-﻿@model IEnumerable<StudyAbroad.Models.Institution>
+﻿@using StudyAbroad.Models
+@model PaginatedList<StudyAbroad.Models.Institution>
 
 @{
-    ViewData["Title"] = "Institution List";
+    ViewData["Title"] = "Institutions";
 }
 
-<div id="list-wrapper" class="p-3">
-    <h1 class="text-center mt-5">@ViewData["Title"]</h1>
-
-    <div id="tablecover" class="p-3">
-        <table class="table table-hover">
+<div class="p-5">
+    <div class="p-5 cover">
+        <h1 class="text-center my-5">@ViewData["Title"]</h1>
+        <form asp-action="Index" method="get" class="my-3">
+            <p class="text-md-end">
+                <input type="text" name="search" value="@ViewData["Filter"]" placeholder="Filter by Name" style="width: 400px; font-size: 1.1rem; font-weight: bold;" />
+                <input type="submit" value="Filter" class="btn btn-dark mt-1 mt-sm-0" />
+                <a class="btn btn-outline-light mt-1 mt-sm-0" style="font-size: 0.9rem; text-shadow: none;" asp-action="Index">Clear</a>
+            </p>
+        </form>
+        <table class="table">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Name)
+                        <a asp-action="Index" asp-route-sort="@ViewData["Name"]" asp-route-filter="@ViewData["Filter"]">Name</a>
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Education)
+                        <a asp-action="Index" asp-route-sort="@ViewData["Education"]" asp-route-filter="@ViewData["Filter"]">Education</a>
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Type)
+                        <a asp-action="Index" asp-route-sort="@ViewData["Type"]" asp-route-filter="@ViewData["Filter"]">Type</a>
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Country)
+                        <a asp-action="Index" asp-route-sort="@ViewData["Country"]" asp-route-filter="@ViewData["Filter"]">Country</a>
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Region)
+                        @Html.DisplayName("State")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.URL)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Note)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DormAvailable)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MealPlanAvailable)
+                        @Html.DisplayName("URL")
                     </th>
                     <th></th>
                 </tr>
@@ -45,10 +43,10 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Education)
                             @{
                                 if (item.Education != Education.College && item.Education != Education.University)
@@ -57,38 +55,66 @@
                                 }
                             }
                         </td>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Type)
                         </td>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Country)
                         </td>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Region)
                         </td>
-                        <td>
+                        <td style="border: none;">
                             <a target="_blank" href="@Html.DisplayFor(modelItem => item.URL)">@Html.DisplayFor(modelItem => item.URL)</a>
                         </td>
+                    </tr>
+                    <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Note)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DormAvailable)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MealPlanAvailable)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.InstitutionID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.InstitutionID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.InstitutionID">Delete</a>
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Edit" asp-route-id="@item.InstitutionID">Edit</a> |
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Details" asp-route-id="@item.InstitutionID">Details</a> |
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Delete" asp-route-id="@item.InstitutionID">Delete</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-        <p class="text-end">
-            <a asp-action="Create">Create New</a>
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+        <p class="text-center">
+            <a asp-action="Index"
+               asp-route-sort="@ViewData["Sort"]"
+               asp-route-page="@(Model.PageIndex - 1)"
+               asp-route-filter="@ViewData["Filter"]"
+               class="btn btn-outline-light @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="Index"
+               asp-route-sort="@ViewData["Sort"]"
+               asp-route-page="@(Model.PageIndex + 1)"
+               asp-route-filter="@ViewData["Filter"]"
+               class="btn btn-outline-light @nextDisabled">
+                Next
+            </a>
+        </p>
+
+        <p class="text-end m-0">
+            <a class="btn btn-outline-danger" asp-action="Create">Add Institution</a>
         </p>
     </div>
 </div>
+
+<style>
+    body {
+        font-family: monospace;
+        color: white;
+        background-image: url("../images/uni.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        font-weight: bold;
+        text-shadow: 2px 2px black;
+    }
+</style>

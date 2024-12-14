@@ -1,15 +1,11 @@
 ﻿@model IEnumerable<StudyAbroad.Models.CourseMember>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CourseMember";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1 class="text-center my-5">@ViewData["Title"]</h1>
+<table class="table text-dark">
     <thead>
         <tr>
             <th>
@@ -31,11 +27,14 @@
                 @Html.DisplayFor(modelItem => item.Member.Country)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>

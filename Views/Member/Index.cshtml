@@ -1,89 +1,114 @@
 ﻿@model IEnumerable<StudyAbroad.Models.Member>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Member";
 }
 
-<h1>Index</h1>
+<div class="p-5">
+    <div class="p-5 cover">
+        <h1 class="text-center my-5">@ViewData["Title"]</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Grade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Region)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RegistrationDate)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                        @if (item.Grade.ToString() != "")
+                        {
+                            if (item.Grade == 1)
+                            {
+                                <span>st</span>
+                            }
+                            else if (item.Grade == 2)
+                            {
+                                <span>nd</span>
+                            }
+                            else if (item.Grade == 3)
+                            {
+                                <span>rd</span>
+                            }
+                            else
+                            {
+                                <span>th</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Region)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistrationDate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MemberID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.MemberID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.MemberID">Delete</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+        <p class="text-end">
+            <a class="btn btn-outline-danger" asp-action="Create">Add Member</a>
+        </p>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Grade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegistrationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Housing)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegistrationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Housing.HousingID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MemberID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MemberID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MemberID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<style>
+    body {
+        font-family: monospace;
+        color: white;
+        background-image: url("../images/note.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        font-family: monospace;
+        font-weight: bold;
+        text-shadow: 2px 2px black;
+    }
+</style>

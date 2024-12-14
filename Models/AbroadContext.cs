@@ -14,6 +14,8 @@ namespace StudyAbroad.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CourseMember>().HasKey(cm => new { cm.CourseID, cm.MemberID });
+
             modelBuilder.Entity<Institution>().HasData(
                 new Institution
                 {
@@ -172,12 +174,6 @@ namespace StudyAbroad.Models
                 },
                 new Housing
                 {
-                    HousingID = 3,
-                    Semester = Semester.Spring,
-                    Year = 2025
-                },
-                new Housing
-                {
                     HousingID = 4,
                     Semester = Semester.Fall,
                     Year = 2025,
@@ -195,12 +191,6 @@ namespace StudyAbroad.Models
                     Country = "United States",
                     MealPlan = "PLAN B",
                     MealCost = 1550
-                },
-                new Housing
-                {
-                    HousingID = 5,
-                    Semester = Semester.Fall,
-                    Year = 2026
                 }
             );
             modelBuilder.Entity<Course>().HasData(
@@ -281,7 +271,7 @@ namespace StudyAbroad.Models
                     Country = "United States",
                     Region = "Michigan",
                     RegistrationDate = DateTime.Parse("2024-10-27"),
-                    HousingID = 5
+                    HousingID = 1
                 },
                 new Member
                 {
@@ -330,13 +320,12 @@ namespace StudyAbroad.Models
                     Country = "United Kingdom",
                     Region = "London",
                     RegistrationDate = DateTime.Parse("2024-9-22"),
-                    HousingID = 3
+                    HousingID = 2
                 }
             );
             modelBuilder.Entity<CourseMember>().HasData(
                 new CourseMember
                 {
-                    ID  = 1,
                     CourseID = 1,
                     MemberID = 1
                 }

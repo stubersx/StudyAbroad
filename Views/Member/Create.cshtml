@@ -9,7 +9,7 @@
 <h4>Member</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 cover">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -75,3 +75,16 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<style>
+    body {
+        font-family: monospace;
+        color: white;
+        background-image: url("/../images/note.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        font-family: monospace;
+    }
+</style>

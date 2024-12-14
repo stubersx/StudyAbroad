@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using StudyAbroad.Models;
 
 namespace StudyAbroad.Controllers
 {
+    [Authorize]
     public class CourseMemberController : Controller
     {
         private readonly AbroadContext _context;
@@ -36,7 +38,7 @@ namespace StudyAbroad.Controllers
             var courseMember = await _context.CourseMembers
                 .Include(c => c.Course)
                 .Include(c => c.Member)
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.CourseID == id);
             if (courseMember == null)
             {
                 return NotFound();
@@ -58,7 +60,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CourseID,MemberID")] CourseMember courseMember)
+        public async Task<IActionResult> Create([Bind("CourseID,MemberID")] CourseMember courseMember)
         {
             if (ModelState.IsValid)
             {
@@ -94,9 +96,9 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CourseID,MemberID")] CourseMember courseMember)
+        public async Task<IActionResult> Edit(int id, [Bind("CourseID,MemberID")] CourseMember courseMember)
         {
-            if (id != courseMember.ID)
+            if (id != courseMember.CourseID)
             {
                 return NotFound();
             }
@@ -110,7 +112,7 @@ namespace StudyAbroad.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseMemberExists(courseMember.ID))
+                    if (!CourseMemberExists(courseMember.CourseID))
                     {
                         return NotFound();
                     }
@@ -137,7 +139,7 @@ namespace StudyAbroad.Controllers
             var courseMember = await _context.CourseMembers
                 .Include(c => c.Course)
                 .Include(c => c.Member)
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.CourseID == id);
             if (courseMember == null)
             {
                 return NotFound();
@@ -163,7 +165,7 @@ namespace StudyAbroad.Controllers
 
         private bool CourseMemberExists(int id)
         {
-            return _context.CourseMembers.Any(e => e.ID == id);
+            return _context.CourseMembers.Any(e => e.CourseID == id);
         }
     }
 }

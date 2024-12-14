@@ -1,0 +1,48 @@
+﻿@using StudyAbroad.Models;
+@model IEnumerable<StudyAbroad.ViewModel.InstitutionGroup>
+
+@{
+    ViewData["Title"] = "Institution Statistics";
+}
+
+<div class="p-5">
+    <div class="p-5 cover">
+        <h1 class="text-center my-5">@ViewData["Title"]</h1>
+        <table class="table">
+            <tr>
+                <th>
+                    Institution Name
+                </th>
+                <th>
+                    #Courses
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.InstitutionID
+                    </td>
+                    <td>
+                        @item.InstitutionCount
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: monospace;
+        color: white;
+        background-image: url("../images/cm.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        font-weight: bold;
+        text-shadow: 2px 2px black;
+    }
+</style>

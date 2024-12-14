@@ -1,131 +1,97 @@
 ﻿@model IEnumerable<StudyAbroad.Models.Housing>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Housing";
 }
 
-<h1>Index</h1>
+<div class="p-5">
+    <div class="p-5 cover">
+        <h1 class="text-center my-5">@ViewData["Title"]</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HousingType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HousingCost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Region)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ZipCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contact)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HousingWebsite)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td rowspan="2">
+                        @Html.DisplayFor(modelItem => item.HousingType)
+                    </td>
+                    <td rowspan="2">
+                        @Html.DisplayFor(modelItem => item.HousingCost)
+                    </td>
+                    <td rowspan="2">
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td rowspan="2">
+                        @Html.DisplayFor(modelItem => item.Region)
+                    </td>
+                    <td rowspan="2">
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td rowspan="2">
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td rowspan="2">
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td style="border: none;">
+                        <a href="#">@Html.DisplayFor(modelItem => item.HousingWebsite)</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Edit" asp-route-id="@item.HousingID">Edit</a> |
+                        <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Details" asp-route-id="@item.HousingID">Details</a> |
+                        <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Delete" asp-route-id="@item.HousingID">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <p class="text-end">
+            <a class="btn btn-outline-danger" asp-action="Create">Add House</a>
+        </p>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Semester)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HousingType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HousingCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdditionalCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoveInDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contact)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HousingWebsite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddressLine1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddressLine2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ZipCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MealPlan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MealCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Semester)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HousingType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HousingCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdditionalCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoveInDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contact)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HousingWebsite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddressLine1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddressLine2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MealPlan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MealCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.HousingID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HousingID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HousingID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<style>
+    body {
+        font-family: monospace;
+        color: white;
+        background-image: url("../images/house.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        font-family: monospace;
+        font-weight: bold;
+        text-shadow: 2px 2px black;
+    }
+</style>

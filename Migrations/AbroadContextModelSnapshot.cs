@@ -17,7 +17,7 @@ namespace StudyAbroad.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -132,21 +132,13 @@ namespace StudyAbroad.Migrations
 
             modelBuilder.Entity("StudyAbroad.Models.CourseMember", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
 
                     b.Property<int>("MemberID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("CourseID");
+                    b.HasKey("CourseID", "MemberID");
 
                     b.HasIndex("MemberID");
 
@@ -155,7 +147,6 @@ namespace StudyAbroad.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
                             CourseID = 1,
                             MemberID = 1
                         });
@@ -279,12 +270,6 @@ namespace StudyAbroad.Migrations
                         },
                         new
                         {
-                            HousingID = 3,
-                            Semester = 1,
-                            Year = 2025
-                        },
-                        new
-                        {
                             HousingID = 4,
                             AdditionalCost = 500.0,
                             AddressLine1 = "1701 E Front St.",
@@ -302,12 +287,6 @@ namespace StudyAbroad.Migrations
                             Semester = 0,
                             Year = 2025,
                             ZipCode = "49686"
-                        },
-                        new
-                        {
-                            HousingID = 5,
-                            Semester = 0,
-                            Year = 2026
                         });
                 });
 
@@ -548,7 +527,7 @@ namespace StudyAbroad.Migrations
                             FirstName = "Clarice",
                             Gender = 1,
                             Grade = 12,
-                            HousingID = 5,
+                            HousingID = 1,
                             LastName = "Langston",
                             Region = "Michigan",
                             RegistrationDate = new DateTime(2024, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -597,7 +576,7 @@ namespace StudyAbroad.Migrations
                             Country = "United Kingdom",
                             FirstName = "Danny",
                             Gender = 0,
-                            HousingID = 3,
+                            HousingID = 2,
                             LastName = "Salmon",
                             Region = "London",
                             RegistrationDate = new DateTime(2024, 9, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)

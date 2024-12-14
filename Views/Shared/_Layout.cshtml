@@ -12,10 +12,6 @@
 </head>
 <body>
     <header style="line-height: 75px;">
-        @{
-            string controller = ViewContext.RouteData.Values["controller"].ToString();
-            string action = ViewContext.RouteData.Values["action"].ToString();
-        }
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-danger border-bottom box-shadow pt-4 pb-0">
             <div class="container-fluid" style="background-color: #F2F0EB;">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="text-shadow: 1px 1px red;">S<i class="fa-solid fa-earth-americas"></i>A</a>
@@ -26,22 +22,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="font-family: cursive; font-weight: bold;">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link @(controller == "Home" && action == "About" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Institution" asp-action="Index">Institution List</a>
+                            <a class="nav-link" asp-area="" asp-controller="Institution" asp-action="Index">Find Institutions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">Program List</a>
+                            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">Find Programs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Housing" asp-action="Index">Housing List</a>
+                            <a class="nav-link" asp-area="" asp-controller="Housing" asp-action="Index">Find Housing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Member" asp-action="Index">Member List</a>
+                            <a class="nav-link" asp-area="" asp-controller="Member" asp-action="Index">Member</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="CourseMember" asp-action="Index">CourseMember List</a>
+                            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="InstCount">Courses Per Inst.</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
@@ -63,7 +59,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 Study Abroad - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 Study Abroad - <a class="text-muted" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
 

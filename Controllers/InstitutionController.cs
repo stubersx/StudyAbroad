@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,63 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Institution
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sort, string filter, string search, int? page)
         {
-            return View(await _context.Institutions.ToListAsync());
+            ViewData["Sort"] = sort;
+            ViewData["Name"] = String.IsNullOrEmpty(sort) ? "name_desc" : "";
+            ViewData["Education"] = sort == "edu" ? "edu_desc" : "edu";
+            ViewData["Type"] = sort == "type" ? "type_desc" : "type";
+            ViewData["Country"] = sort == "cou" ? "cou_desc" : "cou";
+
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = filter;
+            }
+
+            ViewData["Filter"] = search;
+
+            var query = from i in _context.Institutions
+                        select i;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                query = query.Where(q => q.Name.Contains(search));
+            }
+
+            switch (sort)
+            {
+                case "name_desc":
+                    query = query.OrderByDescending(q => q.Name);
+                    break;
+                case "edu":
+                    query = query.OrderBy(q => q.Education);
+                    break;
+                case "edu_desc":
+                    query = query.OrderByDescending(q => q.Education);
+                    break;
+                case "type":
+                    query = query.OrderBy(q => q.Type);
+                    break;
+                case "type_desc":
+                    query = query.OrderByDescending(q => q.Type);
+                    break;
+                case "cou":
+                    query = query.OrderBy(q => q.Country);
+                    break;
+                case "cou_desc":
+                    query = query.OrderByDescending(q => q.Country);
+                    break;
+                default:
+                    query = query.OrderBy(q => q.Name);
+                    break;
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Institution>.CreateAsync(query.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: Institution/Details/5
@@ -43,6 +98,7 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Institution/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -65,6 +121,7 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Institution/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -116,6 +173,7 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Institution/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
