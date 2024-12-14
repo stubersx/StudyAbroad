@@ -65,7 +65,7 @@ namespace StudyAbroad.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country");
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Name");
             return View();
         }
 
@@ -83,7 +83,7 @@ namespace StudyAbroad.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", course.InstitutionID);
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Name", course.InstitutionID);
             return View(course);
         }
 
@@ -101,7 +101,7 @@ namespace StudyAbroad.Controllers
             {
                 return NotFound();
             }
-            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", course.InstitutionID);
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Name", course.InstitutionID);
             return View(course);
         }
 
@@ -138,7 +138,7 @@ namespace StudyAbroad.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Country", course.InstitutionID);
+            ViewData["InstitutionID"] = new SelectList(_context.Institutions, "InstitutionID", "Name", course.InstitutionID);
             return View(course);
         }
 

@@ -10,9 +10,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
+                    <th>Program Name</th>
+                    <th>Institution</th>
                     <th>
                         @Html.DisplayNameFor(model => model.ContactHours)
                     </th>
@@ -34,28 +33,33 @@
             <tbody>
                 @foreach (var item in Model) {
                     <tr>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.Institution.Name)
+                        </td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.ContactHours) hours
                         </td>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Duration) weeks
                         </td>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Tuition)
                         </td>
-                        <td>
+                        <td rowspan="2">
                             @Html.DisplayFor(modelItem => item.Prerequisites)
                         </td>
-                        <td>
+                        <td style="border: none;">
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
+                    </tr>
+                    <tr>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
                         </td>
                     </tr>
                 }

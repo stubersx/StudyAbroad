@@ -17,8 +17,8 @@ namespace StudyAbroad.Models
         [Range(1, 100, ErrorMessage = "Please enter the number of contact hours per week (between 1 and 100).")]
         public int ContactHours { get; set; }
 
-        [Required(ErrorMessage = "Please enter the duration of the course in weeks (betweem 1 and 150).")]
-        [Range(1, 150, ErrorMessage = "Please enter the duration of the course in weeks (betweem 1 and 150).")]
+        [Required(ErrorMessage = "Please enter the duration of the course in weeks (between 1 and 150).")]
+        [Range(1, 150, ErrorMessage = "Please enter the duration of the course in weeks (between 1 and 150).")]
         public int Duration { get; set; }
 
         [Required(ErrorMessage = "Please enter the tuition of the course in US dollars.")]
