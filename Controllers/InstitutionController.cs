@@ -109,6 +109,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable")] Institution institution)
         {
             if (ModelState.IsValid)
@@ -142,6 +143,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("InstitutionID,Name,Education,Type,Country,Region,URL,Note,DormAvailable,MealPlanAvailable")] Institution institution)
         {
             if (id != institution.InstitutionID)
@@ -194,6 +196,7 @@ namespace StudyAbroad.Controllers
         // POST: Institution/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var institution = await _context.Institutions.FindAsync(id);

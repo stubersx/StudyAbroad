@@ -12,7 +12,7 @@
             <p class="text-md-end">
                 <input type="text" name="search" value="@ViewData["Filter"]" placeholder="Filter by Name" style="width: 400px; font-size: 1.1rem; font-weight: bold;" />
                 <input type="submit" value="Filter" class="btn btn-dark mt-1 mt-sm-0" />
-                <a class="btn btn-outline-light mt-1 mt-sm-0" style="font-size: 0.9rem; text-shadow: none;" asp-action="Index">Clear</a>
+                <a class="btn btn-outline-light mt-1 mt-sm-0" style="font-size: 0.9rem;" asp-action="Index">Clear</a>
             </p>
         </form>
         <table class="table">
@@ -99,7 +99,7 @@
             </a>
         </p>
 
-        <p class="text-end m-0">
+        <p class="text-end">
             <a class="btn btn-outline-danger" asp-action="Create">Add Institution</a>
         </p>
     </div>

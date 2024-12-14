@@ -20,6 +20,7 @@ namespace StudyAbroad.Controllers
             _context = context;
         }
 
+        [Authorize]
         public IActionResult InstCount()
         {
             IQueryable<InstitutionGroup> data = (
@@ -73,6 +74,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("CourseID,Name,ContactHours,Duration,Tuition,Prerequisites,Description,Note,InstitutionID")] Course course)
         {
             if (ModelState.IsValid)
@@ -108,6 +110,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("CourseID,Name,ContactHours,Duration,Tuition,Prerequisites,Description,Note,InstitutionID")] Course course)
         {
             if (id != course.CourseID)
@@ -162,6 +165,7 @@ namespace StudyAbroad.Controllers
         // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Courses.FindAsync(id);

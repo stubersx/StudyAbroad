@@ -10,6 +10,7 @@ using StudyAbroad.Models;
 
 namespace StudyAbroad.Controllers
 {
+    [Authorize]
     public class MemberController : Controller
     {
         private readonly AbroadContext _context;
@@ -46,7 +47,6 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Member/Create
-        [Authorize]
         public IActionResult Create()
         {
             ViewData["HousingID"] = new SelectList(_context.Housings, "HousingID", "HousingID");
@@ -71,7 +71,6 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Member/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -125,7 +124,6 @@ namespace StudyAbroad.Controllers
         }
 
         // GET: Member/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

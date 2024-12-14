@@ -81,7 +81,7 @@ namespace StudyAbroad.Controllers
                 return NotFound();
             }
 
-            var courseMember = await _context.CourseMembers.FindAsync(id);
+            var courseMember = await _context.CourseMembers.FirstOrDefaultAsync(m => m.CourseID == id);
             if (courseMember == null)
             {
                 return NotFound();
@@ -153,7 +153,7 @@ namespace StudyAbroad.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var courseMember = await _context.CourseMembers.FindAsync(id);
+            var courseMember = await _context.CourseMembers.FirstOrDefaultAsync(m => m.CourseID == id);
             if (courseMember != null)
             {
                 _context.CourseMembers.Remove(courseMember);

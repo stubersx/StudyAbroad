@@ -55,6 +55,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("HousingID,Semester,Year,HousingType,HousingCost,AdditionalCost,MoveInDate,Contact,HousingWebsite,AddressLine1,AddressLine2,City,Region,ZipCode,Country,MealPlan,MealCost,Note")] Housing housing)
         {
             if (ModelState.IsValid)
@@ -88,6 +89,7 @@ namespace StudyAbroad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("HousingID,Semester,Year,HousingType,HousingCost,AdditionalCost,MoveInDate,Contact,HousingWebsite,AddressLine1,AddressLine2,City,Region,ZipCode,Country,MealPlan,MealCost,Note")] Housing housing)
         {
             if (id != housing.HousingID)
@@ -140,6 +142,7 @@ namespace StudyAbroad.Controllers
         // POST: Housing/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var housing = await _context.Housings.FindAsync(id);

@@ -4,122 +4,70 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<div class="my-5 p-5">
+    <div class="cover px-5 mx-auto" style="max-width: 1500px;">
+        <h1 class="mt-5">@ViewData["Title"]</h1>
+        <h3>Are you sure you want to delete this?</h3>
+        <hr />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Housing</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Semester)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Semester)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HousingType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HousingType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HousingCost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HousingCost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdditionalCost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdditionalCost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MoveInDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MoveInDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contact)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contact)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HousingWebsite)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HousingWebsite)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddressLine1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddressLine1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddressLine2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddressLine2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Region)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MealPlan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MealPlan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MealCost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MealCost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="HousingID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+        <dl style="max-width: 1200px;" class="ms-1 my-5 row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.HousingType)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.HousingType)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.HousingCost)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.HousingCost)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.AdditionalCost)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.AdditionalCost)
+            </dd>
+            <dt class="col-sm-4">Address</dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.City) City,
+                @Html.DisplayFor(model => model.Region),
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ZipCode)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Contact)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Contact)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.HousingWebsite)
+            </dt>
+            <dd class="col-sm-8">
+                <a href="#">@Html.DisplayFor(model => model.HousingWebsite)</a>
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+        </dl>
+        <form asp-action="Delete">
+            <p class="text-end">
+                <input type="hidden" asp-for="HousingID" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <a class="btn btn-outline-light" asp-action="Index">Back to List</a>
+            </p>
+        </form>
+    </div>
 </div>
 
 <style>
@@ -131,6 +79,7 @@
     }
 
     h1 {
-        font-family: monospace;
+        font-weight: bold;
+        text-shadow: 2px 2px black;
     }
 </style>

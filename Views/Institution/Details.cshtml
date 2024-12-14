@@ -35,6 +35,33 @@
                 @Html.DisplayFor(model => model.Region)
             </dd>
             <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.DormAvailable)
+            </dt>
+            <dd class="col-sm-8">
+                @if (Model.DormAvailable)
+                {
+                    <span class="bg-danger p-1" style="font-weight: bold;">Available</span>
+                }
+                else
+                {
+                    <span class="bg-secondary p-1">Unavailable</span>
+
+                }
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.MealPlanAvailable)
+            </dt>
+            <dd class="col-sm-8">
+                @if (Model.MealPlanAvailable)
+                {
+                    <span class="bg-danger p-1" style="font-weight: bold;">Available</span>
+                }
+                else
+                {
+                    <span class="bg-secondary p-1">Unavailable</span>
+                }
+            </dd>
+            <dt class="col-sm-4">
                 @Html.DisplayNameFor(model => model.URL)
             </dt>
             <dd class="col-sm-8">
@@ -46,21 +73,9 @@
             <dd class="col-sm-8">
                 @Html.DisplayFor(model => model.Note)
             </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.DormAvailable)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.DormAvailable)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.MealPlanAvailable)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.MealPlanAvailable)
-            </dd>
         </dl>
         <div class="text-end">
-            <a class="btn btn-outline-danger" asp-action="Edit" asp-route-id="@Model?.InstitutionID">Edit</a> |
+            <a class="btn btn-outline-danger" asp-action="Edit" asp-route-id="@Model?.InstitutionID">Edit</a>
             <a class="btn btn-outline-light" asp-action="Index">Back to List</a>
         </div>
     </div>

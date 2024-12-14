@@ -38,58 +38,58 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Age)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Grade)
-                        @if (item.Grade.ToString() != "")
-                        {
-                            if (item.Grade == 1)
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                            @if (item.Grade.ToString() != "")
                             {
-                                <span>st</span>
+                                if (item.Grade == 1)
+                                {
+                                    <span>st</span>
+                                }
+                                else if (item.Grade == 2)
+                                {
+                                    <span>nd</span>
+                                }
+                                else if (item.Grade == 3)
+                                {
+                                    <span>rd</span>
+                                }
+                                else
+                                {
+                                    <span>th</span>
+                                }
                             }
-                            else if (item.Grade == 2)
-                            {
-                                <span>nd</span>
-                            }
-                            else if (item.Grade == 3)
-                            {
-                                <span>rd</span>
-                            }
-                            else
-                            {
-                                <span>th</span>
-                            }
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Country)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Region)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RegistrationDate)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.MemberID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.MemberID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.MemberID">Delete</a>
-                    </td>
-                </tr>
-        }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Region)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RegistrationDate)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.MemberID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.MemberID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.MemberID">Delete</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
         <p class="text-end">
@@ -107,7 +107,6 @@
     }
 
     h1 {
-        font-family: monospace;
         font-weight: bold;
         text-shadow: 2px 2px black;
     }

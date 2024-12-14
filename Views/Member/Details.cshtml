@@ -1,80 +1,96 @@
 ﻿@model StudyAbroad.Models.Member
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.FirstName + " " + Model.LastName;
 }
 
-<h1>Details</h1>
+<div class="my-5 p-5">
+    <div class="cover px-5 mx-auto" style="max-width: 1500px;">
+        <h1 class="mt-5 text-center">@ViewData["Title"]</h1>
+        <hr />
 
-<div>
-    <h4>Member</h4>
-    <hr />
-    <dl class="row cover">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Grade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Grade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Region)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegistrationDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegistrationDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Housing)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Housing.HousingID)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.MemberID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <dl style="max-width: 1200px;" class="mx-auto my-5 row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Grade)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Grade)
+                @if (Model.Grade.ToString() != "")
+                {
+                    if (Model.Grade == 1)
+                    {
+                        <span>st</span>
+                    }
+                    else if (Model.Grade == 2)
+                    {
+                        <span>nd</span>
+                    }
+                    else if (Model.Grade == 3)
+                    {
+                        <span>rd</span>
+                    }
+                    else
+                    {
+                        <span>th</span>
+                    }
+                }
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Region)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Region)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </dt>
+            <dd class="col-sm-8 mb-5">
+                @Html.DisplayFor(model => model.RegistrationDate)
+            </dd>
+            <dt class="col-sm-4">Destination</dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Housing.Region),
+                @Html.DisplayFor(model => model.Housing.Country)
+            </dd>
+            <dt class="col-sm-4">Housing Type</dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Housing.HousingType)
+            </dd>
+            <dt class="col-sm-4">Starting Semester</dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Housing.Semester)
+                @Html.DisplayFor(model => model.Housing.Year)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+        </dl>
+        <div class="text-end">
+            <a class="btn btn-outline-danger" asp-action="Edit" asp-route-id="@Model?.MemberID">Edit</a>
+            <a class="btn btn-outline-light" asp-action="Index">Back to List</a>
+        </div>
+    </div>
 </div>
 
 <style>
@@ -86,6 +102,8 @@
     }
 
     h1 {
-        font-family: monospace;
+        font-weight: bold;
+        font-style: italic;
+        text-shadow: 2px 2px black;
     }
 </style>

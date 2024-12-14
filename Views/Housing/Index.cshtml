@@ -10,6 +10,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Housing ID</th>
                     <th>
                         @Html.DisplayNameFor(model => model.HousingType)
                     </th>
@@ -38,45 +39,48 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach (var item in Model) {
-                <tr>
-                    <td rowspan="2">
-                        @Html.DisplayFor(modelItem => item.HousingType)
-                    </td>
-                    <td rowspan="2">
-                        @Html.DisplayFor(modelItem => item.HousingCost)
-                    </td>
-                    <td rowspan="2">
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td rowspan="2">
-                        @Html.DisplayFor(modelItem => item.Region)
-                    </td>
-                    <td rowspan="2">
-                        @Html.DisplayFor(modelItem => item.Country)
-                    </td>
-                    <td rowspan="2">
-                        @Html.DisplayFor(modelItem => item.ZipCode)
-                    </td>
-                    <td rowspan="2">
-                        @Html.DisplayFor(modelItem => item.Contact)
-                    </td>
-                    <td style="border: none;">
-                        <a href="#">@Html.DisplayFor(modelItem => item.HousingWebsite)</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Edit" asp-route-id="@item.HousingID">Edit</a> |
-                        <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Details" asp-route-id="@item.HousingID">Details</a> |
-                        <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Delete" asp-route-id="@item.HousingID">Delete</a>
-                    </td>
-                </tr>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.HousingID)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.HousingType)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.HousingCost)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.Region)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.ZipCode)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.Contact)
+                        </td>
+                        <td style="border: none;">
+                            <a href="#">@Html.DisplayFor(modelItem => item.HousingWebsite)</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Edit" asp-route-id="@item.HousingID">Edit</a> |
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Details" asp-route-id="@item.HousingID">Details</a> |
+                            <a style="text-shadow: 1px 1px black;" class="text-danger" asp-action="Delete" asp-route-id="@item.HousingID">Delete</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
         <p class="text-end">
-            <a class="btn btn-outline-danger" asp-action="Create">Add House</a>
+            <a class="btn btn-outline-danger" asp-action="Create">Add Housing Option</a>
         </p>
     </div>
 </div>
@@ -90,7 +94,6 @@
     }
 
     h1 {
-        font-family: monospace;
         font-weight: bold;
         text-shadow: 2px 2px black;
     }
